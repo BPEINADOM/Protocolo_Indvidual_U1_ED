@@ -31,5 +31,32 @@ public class EjercicioArreglos {
         for (int numero : numeros) {
             System.out.println(numero);
         }
+
+        // Cambiar valores impares por cero
+        for (int i = 0; i < numeros.length; i++) {
+            if (numeros[i] % 2 !=0) {
+                numeros[i] = 0;
+            }
+        }
+
+        // Imprimir el arreglo modificado
+        System.out.println("\nArreglo cambiando impares por 0");
+
+        for (int numero : numeros) {
+            System.out.println(numero);
+        }
+
+        // Multiplicamos todos los valores por su indice
+        for (int i = 0; i < numeros.length; i++) {
+            numeros[i] = numeros[i] * i;
+        }
+
+        // Imprimir el arreglo con la multiplicacion por su indice
+        System.out.println("\nArreglo despues de multiplicar por el indice:");
+
+        for (int numero : numeros) {
+            System.out.println(numero);
+        }
+
     }
 }
