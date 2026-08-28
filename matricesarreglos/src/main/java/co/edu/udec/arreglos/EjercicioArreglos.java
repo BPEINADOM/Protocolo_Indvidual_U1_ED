@@ -58,5 +58,27 @@ public class EjercicioArreglos {
             System.out.println(numero);
         }
 
+        // BUSQUEDA LINEAL
+
+        // Inicializamos el numero que queremos buscar
+        int buscado = 14;
+
+        // Variable para almacenar la posicion del numero buscado
+        int posicion = -1;
+
+        // Recorremos el arreglo para buscar el numero
+        for (int i = 0; i < numeros.length; i++) {
+            if (numeros[i] == buscado) {
+                posicion = i;
+                break;
+            }
+        }
+
+        // Imprimimos el resultado de la busqueda
+        if (posicion != -1) {           
+            System.out.println("\nEl numero " + buscado + " se encuentra en la posicion: " + posicion);
+        } else {
+            System.out.println("\nEl numero " + buscado + " no se encuentra en el arreglo.");
+        }
     }
 }
