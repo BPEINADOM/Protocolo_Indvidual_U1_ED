@@ -14,6 +14,8 @@ public class JuegoConectaCuatro {
             }
         }
 
+        insertarFicha(tablero, 3, 'X');
+
         // Mostramos el tablero inicial
         mostrarTablero(tablero);
 
@@ -33,5 +35,22 @@ public class JuegoConectaCuatro {
         }
 
         System.out.println(" 1  2  3  4  5  6  7");
+    }
+
+    public static boolean insertarFicha(char[][] tablero, int columna, char ficha) {
+
+        // Recorrer la columna desde la última fila hasta la primera
+        for (int i = tablero.length - 1; i >= 0; i--) {
+
+            // Comprobar si la posicion esta vacia
+            if (tablero[i][columna] == ' ') {
+
+                // Colocar la ficha
+                tablero[i][columna] = ficha;
+
+                return true; // Ficha insertada correctamente
+            }
+        }
+        return false; // No se pudo insertar la ficha
     }
 }
