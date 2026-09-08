@@ -43,8 +43,17 @@ public class JuegoConectaCuatro {
             // Mostramos el tablero actualizado
             mostrarTablero(tablero);
 
-            // Cambiamos de jugador
-            ficha = (ficha == 'X') ? 'O' : 'X';
+            // Verificamos si el jugador actual ha ganado
+            if (verificarGanador(tablero, ficha)) {
+
+                System.out.println("¡Jugador " + ficha + " ha ganado!");
+                juegoTerminado = true;
+
+            } else {
+                
+                // Cambiamos de jugador
+                ficha = (ficha == 'X') ? 'O' : 'X';
+            }
         }
 
         scanner.close();
@@ -82,5 +91,69 @@ public class JuegoConectaCuatro {
             }
         }
         return false; // No se pudo insertar la ficha
+    }
+
+    public static boolean verificarGanador(char[][] tablero, char ficha) {
+
+        // Verificar filas horizontalmente
+        for (int i = 0; i < tablero.length; i++) {
+
+            for (int j = 0; j <= tablero[i].length - 4; j++) {
+
+                if (tablero[i][j] == ficha 
+                    && tablero[i][j + 1] == ficha 
+                    && tablero[i][j + 2] == ficha 
+                    && tablero[i][j + 3] == ficha) {
+
+                    return true;
+                }
+            }
+        }
+
+        // Verificar columnas verticalmente
+        for (int i = 0; i <= tablero.length - 4; i++) {
+
+            for (int j = 0; j < tablero[i].length; j++) {
+
+                if (tablero[i][j] == ficha 
+                    && tablero[i + 1][j] == ficha 
+                    && tablero[i + 2][j] == ficha 
+                    && tablero[i + 3][j] == ficha) {
+
+                    return true;
+                }
+            }
+        }
+
+        // Verificar diagonales (de izquierda a derecha)
+        for (int i = 0; i <= tablero.length - 4; i++)
+        {
+            for (int j = 0; j <= tablero[i].length - 4; j++) {
+
+                if (tablero[i][j] == ficha 
+                    && tablero[i + 1][j + 1] == ficha 
+                    && tablero[i + 2][j + 2] == ficha 
+                    && tablero[i + 3][j + 3] == ficha) {
+
+                    return true;
+                }
+            }
+        }
+
+        // Verificar diagonales (de derecha a izquierda)
+        for (int i = 0; i <= tablero.length - 4; i++) {
+
+            for (int j = 3; j < tablero[i].length; j++) {
+
+                if (tablero[i][j] == ficha 
+                    && tablero[i + 1][j - 1] == ficha 
+                    && tablero[i + 2][j - 2] == ficha 
+                    && tablero[i + 3][j - 3] == ficha) {
+
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
