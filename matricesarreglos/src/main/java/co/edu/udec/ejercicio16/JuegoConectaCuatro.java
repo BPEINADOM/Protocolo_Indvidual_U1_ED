@@ -1,5 +1,7 @@
 package co.edu.udec.ejercicio16;
 
+import java.util.Scanner;
+
 public class JuegoConectaCuatro {
     
     public static void main(String[] args) {
@@ -14,10 +16,38 @@ public class JuegoConectaCuatro {
             }
         }
 
-        insertarFicha(tablero, 3, 'X');
-
         // Mostramos el tablero inicial
         mostrarTablero(tablero);
+
+        Scanner scanner = new Scanner(System.in);
+
+        char ficha = 'X'; // Ficha del jugador 1
+        boolean juegoTerminado = false;
+
+        while (!juegoTerminado) {
+            System.out.print("Jugador " + ficha + ", elige una columna (1-7): ");
+            int columna = scanner.nextInt() - 1; // Restamos 1 para ajustar al índice del array
+
+            // Validamos la columna ingresada
+            if (columna < 0 || columna >= tablero[0].length) {
+                System.out.println("Columna inválida. Intenta de nuevo.");
+                continue;
+            }
+
+            // Intentamos insertar la ficha en la columna seleccionada
+            if (!insertarFicha(tablero, columna, ficha)) {
+                System.out.println("La columna está llena. Intenta de nuevo.");
+                continue;
+            }
+
+            // Mostramos el tablero actualizado
+            mostrarTablero(tablero);
+
+            // Cambiamos de jugador
+            ficha = (ficha == 'X') ? 'O' : 'X';
+        }
+
+        scanner.close();
 
     }
 
